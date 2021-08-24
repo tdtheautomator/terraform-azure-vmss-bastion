@@ -47,4 +47,5 @@ resource "azurerm_windows_virtual_machine_scale_set" "vmss-tier1" {
     settings = jsonencode({ "commandToExecute" = "powershell -command \"[System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String('${base64encode(data.template_file.script-simple-iis.rendered)}')) | Out-File -filepath simple-iis.ps1\" && powershell -ExecutionPolicy Unrestricted -File simple-iis.ps1" })
   }
 
+   encryption_at_host_enabled = true
 }
